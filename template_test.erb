@@ -1,0 +1,8 @@
+require "minitest/autorun"
+
+class <%= @test_class %> < Minitest::Test
+  def test_<%= @test_name %>
+    sleep <%= @duration %>
+    assert_equal true, <%= @pass %>
+  end
+end
