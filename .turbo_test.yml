@@ -1,11 +1,15 @@
 install: |
-  sudo apt-get update -y --no-install-recommends
-  sudo apt-get install ruby-full -y --no-install-recommends
+  sudo apt-get update -y
+  sudo apt-get install make upstart gcc g++ make -y --no-install-recommends
 
 setup: |
-  
+  echo 'SETUP'
+
 test_suite:
-  command: ruby
+  command: echo
 
   files:
     - test/*_test.rb
+
+  env:
+    - FOO=bar
