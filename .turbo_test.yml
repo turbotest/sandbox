@@ -6,19 +6,10 @@ setup: |
   echo 'SETUP'
 
 test_suite:
-  command: echo
+  command: sh
 
   files:
-    - test/00084d61_c0f9_476d_affc_d1d9c303abe0_test.rb
-    - test/0045f644_9581_411b_b3fe_47ff0b13083f_test.rb
-    - test/0245ad4d_264c_4d72_bdf1_38d2ddf289b8_test.rb
-    - test/03edc1e8_c4f6_4780_9ad7_1d5cf4472d83_test.rb
-    - test/0401d4fe_cb5a_490e_a415_1e3d2a94b050_test.rb
-    - test/040353d5_c793_46a2_8bf9_bc7658ef1934_test.rb
-    - test/049b3bbd_deea_4379_b132_a3e192ddf8f3_test.rb
-    - test/04db4ad8_7273_4533_8721_f451fa851f48_test.rb
-    - test/05734733_870f_4b36_a129_8e8494217f66_test.rb
-    - test/065be074_6c46_40d7_86be_2eb34000f95b_test.rb
+    - test/*_test.sh
 
   env:
     - FOO=bar
