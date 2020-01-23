@@ -9,7 +9,8 @@ test_suite:
   command: sh
 
   files:
-    - test/*_test.sh
+    - test_68_mins/*_test.sh
+    # - test_17_mins/*_test.sh
 
   env:
     - FOO=bar
