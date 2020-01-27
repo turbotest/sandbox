@@ -9,8 +9,10 @@ test_suite:
   command: sh
 
   files:
-    - test_68_mins/*_test.sh
-    # - test_17_mins/*_test.sh
+    - test_17_mins/*_test.sh
+    # - test_68_mins/*_test.sh
+    # - test_136_mins/*_test.sh
+    # - test_272_mins/*_test.sh
 
   env:
     - FOO=bar
