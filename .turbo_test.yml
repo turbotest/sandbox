@@ -10,7 +10,7 @@ setup: |
 
 test_suite:
   env:
-    FOO: bar
+    FOO: test suite bar
     BAZ: quux
 
   command: sh
