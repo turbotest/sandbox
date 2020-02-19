@@ -1,11 +1,18 @@
+env:
+  FOO: bar
+
 install: |
   sudo apt-get update -y
   sudo apt-get install make upstart gcc g++ make -y --no-install-recommends
 
 setup: |
-  echo 'SETUP'
+  echo $FOO
 
 test_suite:
+  env:
+    FOO: bar
+    BAZ: quux
+
   command: sh
 
   files:
@@ -20,6 +27,3 @@ test_suite:
     # - test_68_mins/*_test.sh
     # - test_136_mins/*_test.sh
     # - test_272_mins/*_test.sh
-
-  env:
-    - FOO=bar
