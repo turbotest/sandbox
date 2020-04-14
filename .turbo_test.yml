@@ -6,7 +6,35 @@ install: |
   sudo apt-get install make upstart gcc g++ make -y --no-install-recommends
 
 setup: |
-  echo $FOO
+  # This sample code is not necessary but creates a vm-info.txt file
+  # with useful information in the Vagrant VM home directory:
+
+  OS_RELEASE=$(cat /etc/os-release  | grep VERSION= | cut -d= -f2  | sed s/\"//g)
+
+  echo VM Creation Time: $(date -u)               > vm-info.txt
+  echo ''                                        >> vm-info.txt
+  echo ''                                        >> vm-info.txt
+
+  echo "OS Release:       $OS_RELEASE"           >> vm-info.txt
+  echo ''                                        >> vm-info.txt
+  echo ''                                        >> vm-info.txt
+
+  echo 'uname -a:'                               >> vm-info.txt
+  uname -a                                       >> vm-info.txt
+  echo ''                                        >> vm-info.txt
+  echo ''                                        >> vm-info.txt
+
+  echo 'Disk Space:'                             >> vm-info.txt
+  df -h                                          >> vm-info.txt
+  echo ''                                        >> vm-info.txt
+  echo ''                                        >> vm-info.txt
+
+  echo 'Memory:'                                 >> vm-info.txt
+  free -h                                        >> vm-info.txt
+  echo ''                                        >> vm-info.txt
+  echo ''                                        >> vm-info.txt
+  echo 'Host directory linked to /vagrant:'      >> vm-info.txt
+  ls -l /vagrant                                 >> vm-info.txt
 
 test_suite:
   env:
