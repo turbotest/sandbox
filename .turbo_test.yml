@@ -33,7 +33,7 @@ setup: |
   free -h                                        >> vm-info.txt
   echo ''                                        >> vm-info.txt
   echo ''                                        >> vm-info.txt
-  echo 'Host directory linked to /vagrant:'      >> vm-info.txt
+  echo 'Content of host directory linked to /vagrant as of VM creation time:' >> vm-info.txt
   ls -l /vagrant                                 >> vm-info.txt
 
 test_suite:
