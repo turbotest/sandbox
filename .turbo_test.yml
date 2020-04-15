@@ -9,32 +9,20 @@ setup: |
   # This sample code is not necessary but creates a vm-info.txt file
   # with useful information in the Vagrant VM home directory:
 
+  write () {
+    echo -e "$1\n\n" >> vm-info.txt
+  }
+
   OS_RELEASE=$(cat /etc/os-release  | grep VERSION= | cut -d= -f2  | sed s/\"//g)
 
-  echo VM Creation Time: $(date -u)               > vm-info.txt
-  echo ''                                        >> vm-info.txt
-  echo ''                                        >> vm-info.txt
+  echo -n '' > vm-info.txt  # truncate/create file
 
-  echo "OS Release:       $OS_RELEASE"           >> vm-info.txt
-  echo ''                                        >> vm-info.txt
-  echo ''                                        >> vm-info.txt
-
-  echo 'uname -a:'                               >> vm-info.txt
-  uname -a                                       >> vm-info.txt
-  echo ''                                        >> vm-info.txt
-  echo ''                                        >> vm-info.txt
-
-  echo 'Disk Space:'                             >> vm-info.txt
-  df -h                                          >> vm-info.txt
-  echo ''                                        >> vm-info.txt
-  echo ''                                        >> vm-info.txt
-
-  echo 'Memory:'                                 >> vm-info.txt
-  free -h                                        >> vm-info.txt
-  echo ''                                        >> vm-info.txt
-  echo ''                                        >> vm-info.txt
-  echo 'Content of host directory linked to /vagrant as of VM creation time:' >> vm-info.txt
-  ls -l /vagrant                                 >> vm-info.txt
+  write "VM Creation Time: $(date -u)"
+  write "OS Release:       $OS_RELEASE"
+  write "uname -a:\n$(uname -a)"
+  write "Disk Space:\n$(df -h)"
+  write "Memory:\n$(free -h)"
+  write "Content of host directory linked to /vagrant as of VM creation time:\n$(ls -l /vagrant)"
 
 test_suite:
   env:
