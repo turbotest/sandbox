@@ -1,22 +1,60 @@
 env:
   FOO: bar
 
+# The installation definition contains the commands needed to create a virtual
+# machine capable of running your tests. This is where you install required
+# programming languages, databases and other supporting libraries.
+#
+# The build installation is cached as a virtual machine image for subsequent
+# builds. When the install section changes, the virtual machine image is
+# re-created.
+#
+# Installation commands are specified as a YAML multi-line string.
+#
+# N.B. Remember, shell commands MUST execute non-interactively. For example,
+# any commands that require user input will hang until the build is cancelled or
+# after a 15 minute timeout.
 install: |
   sudo apt-get update -y
   sudo apt-get install make upstart gcc g++ make -y --no-install-recommends
   touch local_env
   source local_env
 
+# The setup definition specifies commands to execute before running your test
+# suites.
+#
+# Use the setup definition to update your project dependencies or compile classes.
+# For example, in a ruby project here's where you run bundle install.
+#
+# Unlike the install definition, setup is not cached and therefore executes on
+# every build.
 setup: |
   echo $FOO
 
+# Test suites are inferred from each YAML key ending with test_suite.
+#
+# Specify multiple test suites by adding a YAML key with a  unique prefix ending
+# in _test_suite such as:
+# - system_test_suite
+# - functional_test_suite
+#
+# Create a test_suite YAML key if your build only requires one test suite.
 test_suite:
+
+  # Environment variables are specified as YAML key/value pairs.
   env:
     FOO: test suite bar
     BAZ: quux
-
+    
+  # A string specifying the command which executes one test file.
+  #
+  # The test file is passed as the last argument to the command.
   command: sh
 
+  # An array of file path globs which expands to a list of files. File paths are
+  # relative to the project directory.
+  #
+  # Each file is passed as the last argument to your test command.
   files:
     # - test_17_mins/012a9abb_3687_4b7b_b263_141f930a737a_test.sh
     # - test_17_mins/014a0146_ebbe_41e0_a078_9ae7690e35c4_test.sh
